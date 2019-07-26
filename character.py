@@ -11,7 +11,7 @@ class Character:
 
     def increase_attribute(self, var):
         """This is to set the attribute back to 1"""
-        if self.attributes[var.title()].get() != 5:
+        if self.attributes[var.title()].get() != 6:
             self.attributes[var.title()].set(self.attributes[var.title()].get() + 1)
         
 
