@@ -1,6 +1,6 @@
 
 """The aim here is to prototype the look of the main page"""
-from tkinter import LEFT, RIGHT, CENTER, X, Y, RIDGE
+from tkinter import LEFT, RIGHT, CENTER, X, Y, RIDGE, SUNKEN, BOTH 
 import tkinter as tk
 from character import Character
 from dice_roll import Die
@@ -142,15 +142,35 @@ class GlobalFrequency:
             font=("Courier", 15))
         self.character_label.pack()
 
+# setting up check button section
+        self.check_frame = tk.Frame(master, width=400, bd=3, bg = 'grey')
+        self.check_frame.pack()
 
+        self.st_check = tk.Checkbutton(self.check_frame, text = 'Str', font=("Courier", 15))# strength check
+        self.st_check.pack(side = LEFT)
+
+        self.sm_check = tk.Checkbutton(self.check_frame, text = 'Sma', font=("Courier", 15))# smarts check
+        self.sm_check.pack(side = LEFT)
+
+        self.de_check = tk.Checkbutton(self.check_frame, text = 'dex', font=("Courier", 15))# dexterity check
+        self.de_check.pack(side = LEFT)
+
+        self.wi_check = tk.Checkbutton(self.check_frame, text = 'Wis', font=("Courier", 15))# wisdom check
+        self.wi_check.pack(side = LEFT)
+
+        self.ca_check = tk.Checkbutton(self.check_frame, text = 'Cha', font=("Courier", 15))# charisma check
+        self.ca_check.pack(side = LEFT)
+
+        self.sp_check = tk.Checkbutton(self.check_frame, text = 'Spi', font=("Courier", 15))# spirit check
+        self.sp_check.pack(side = LEFT)
 
 #trying to make a dice work
-        self.dice_frame = tk.Frame(master, width=400, bd=3,  )#spidom frame
-        self.dice_frame.pack(fill=X)
+        self.dice_frame = tk.Frame(master, width=400, bd=3)#spidom frame
+        self.dice_frame.place(relx = 0.5, rely = 0.4, anchor = 'n')
         self.dice = Die(0, self.dice_frame)
         self.roll_btn = tk.Button(self.dice_frame, text = "Roll 'em", font=("Courier", 15),
-            width = 15, command = lambda: self.dice.roll())
-        self.roll_btn.pack()
+            width = 15, command = lambda: self.dice.roll(), relief = RIDGE)
+        self.roll_btn.pack(fill=BOTH, expand=1)
 
 
 

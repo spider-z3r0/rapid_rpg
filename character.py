@@ -6,7 +6,7 @@ class Character:
     def __init__(self, name):
         """initialize the attributes of the character"""
         self.name = name
-        self.attributes = {'Strength':1, 'Dexterity':1, 'Wisdom':1, 'Charisma':1, 'Spirit':1}
+        self.attributes = {'Strength':1, 'Smarts': 1, 'Dexterity':1, 'Wisdom':1, 'Charisma':1, 'Spirit':1}
 
 
     def increase_attribute(self, var):
