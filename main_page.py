@@ -1,8 +1,9 @@
 
 """The aim here is to prototype the look of the main page"""
-from tkinter import LEFT, RIGHT, CENTER, X, Y, SUNKEN
+from tkinter import LEFT, RIGHT, CENTER, X, Y, RIDGE
 import tkinter as tk
 from character import Character
+from dice_roll import Die
 
 
 
@@ -17,6 +18,7 @@ class GlobalFrequency:
 #trying to set this up with a character
         self.character = Character('spider jerselem')
         self.character.attributes['Strength'] = tk.IntVar()
+        self.character.attributes['Smarts'] = tk.IntVar()
         self.character.attributes['Dexterity'] = tk.IntVar()
         self.character.attributes['Wisdom'] = tk.IntVar()
         self.character.attributes['Charisma'] = tk.IntVar()
@@ -26,7 +28,6 @@ class GlobalFrequency:
         self.name_label.pack()
 
 #This is where the buttons and stuff start, 
-#There's no function yet it's just a prototype
         self.str_frame = tk.Frame(master, width=400)#strength frame
         self.str_frame.pack(fill=X)
 
@@ -42,6 +43,23 @@ class GlobalFrequency:
                         textvariable = self.character.attributes['Strength'],
                         font=("Courier", 15))
         self.str_label.pack()
+
+
+        self.sm_frame = tk.Frame(master, width=400)#Smarts frame
+        self.sm_frame.pack(fill=X)
+
+        self.sm_btn_1 = tk.Button(self.sm_frame, text = 'Smarts up', font=("Courier", 15),
+           width = 15, command = lambda: self.character.increase_attribute('Smarts'))
+        self.sm_btn_1.pack(side = LEFT)
+
+        self.sm_btn_2 = tk.Button(self.sm_frame, text = 'Smarts down', font=("Courier", 15), 
+            width = 15, command = lambda: self.character.decrease_attribute('Smarts'))
+        self.sm_btn_2.pack(side = LEFT)
+
+        self.sma_label = tk.Label(self.sm_frame,
+                        textvariable = self.character.attributes['Smarts'],
+                        font=("Courier", 15))
+        self.sma_label.pack()
 
 #Dex Buttons and stuff. 
 
@@ -116,13 +134,23 @@ class GlobalFrequency:
         self.spi_label.pack()
 
 # making a label to describe the character
-        self.character_frame = tk.Frame(master, width=400, bd=1, relief=SUNKEN)
+        self.character_frame = tk.Frame(master, width=400, bd=3,  )
         self.character_frame.pack(fill=X)
 
         self.character_label= tk.Label(self.character_frame,
             text = "Activate Attibute",
             font=("Courier", 15))
         self.character_label.pack()
+
+
+
+#trying to make a dice work
+        self.dice_frame = tk.Frame(master, width=400, bd=3,  )#spidom frame
+        self.dice_frame.pack(fill=X)
+        self.dice = Die(0, self.dice_frame)
+        self.roll_btn = tk.Button(self.dice_frame, text = "Roll 'em", font=("Courier", 15),
+            width = 15, command = lambda: self.dice.roll())
+        self.roll_btn.pack()
 
 
 
