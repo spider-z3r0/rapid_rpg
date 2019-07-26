@@ -165,7 +165,7 @@ class GlobalFrequency:
         self.sp_check = tk.Checkbutton(self.check_frame, text = 'Spi', font=("Courier", 15))# spirit check
         self.sp_check.pack(side = LEFT)
 
-#trying to make a dice work
+#trying to make a dice work, the label to print the result is in dice_roll.py
         self.dice_frame = tk.Frame(master, width=400, bd=3)#spirit frame
         self.dice_frame.place(relx = 0.5, rely = 0.4, anchor = 'n')
         self.dice = Die(0, self.dice_frame)
