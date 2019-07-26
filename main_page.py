@@ -1,6 +1,6 @@
 
 """The aim here is to prototype the look of the main page"""
-from tkinter import LEFT, RIGHT, CENTER, X, Y, RIDGE, SUNKEN, BOTH 
+from tkinter import LEFT, RIGHT, CENTER, X, Y, RIDGE, SUNKEN, BOTH, RAISED 
 import tkinter as tk
 from character import Character
 from dice_roll import Die
@@ -170,8 +170,9 @@ class GlobalFrequency:
         self.dice_frame.place(relx = 0.5, rely = 0.4, anchor = 'n')
         self.dice = Die(0, self.dice_frame)
         self.roll_btn = tk.Button(self.dice_frame, text = "Roll 'em", font=("Courier", 15),
-            width = 15, command = lambda: self.dice.roll(), relief = RIDGE)
-        self.roll_btn.pack(fill=BOTH, expand=1)
+            width = 15, command = lambda: self.dice.roll())
+        self.roll_btn.config(relief = SUNKEN)
+        self.roll_btn.pack()
 
 
 
