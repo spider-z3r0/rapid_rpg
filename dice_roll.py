@@ -18,6 +18,7 @@ class Die():
     
     def roll(self):
         value = random.randint(1,6)
-        self.label_var.set(value)
+        result = int(value) + 1
+        self.label_var.set(f"result: {value} + 1 = {result}")
         print (f"label_var = {value}")
 

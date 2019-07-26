@@ -46,6 +46,7 @@ class GlobalFrequency:
 
 
         self.sm_frame = tk.Frame(master, width=400)#Smarts frame
+ 
         self.sm_frame.pack(fill=X)
 
         self.sm_btn_1 = tk.Button(self.sm_frame, text = 'Smarts up', font=("Courier", 15),
@@ -117,7 +118,7 @@ class GlobalFrequency:
 
 #spirit Buttons and stuff. 
 
-        self.spi_frame = tk.Frame(master, width=400)#spidom frame
+        self.spi_frame = tk.Frame(master, width=400)#spirit frame
         self.spi_frame.pack(fill=X)
 
         self.spi_btn_1 = tk.Button(self.spi_frame, text = 'Spirit up', font=("Courier", 15),
@@ -165,7 +166,7 @@ class GlobalFrequency:
         self.sp_check.pack(side = LEFT)
 
 #trying to make a dice work
-        self.dice_frame = tk.Frame(master, width=400, bd=3)#spidom frame
+        self.dice_frame = tk.Frame(master, width=400, bd=3)#spirit frame
         self.dice_frame.place(relx = 0.5, rely = 0.4, anchor = 'n')
         self.dice = Die(0, self.dice_frame)
         self.roll_btn = tk.Button(self.dice_frame, text = "Roll 'em", font=("Courier", 15),
