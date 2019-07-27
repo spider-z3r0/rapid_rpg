@@ -12,15 +12,22 @@ class GlobalFrequency:
         """intialise the attributes of the variable"""
         self.master = master
         master.title = "Global Frequency"
+        self.features = {}
 
         # trying to set this up with a character
         self.character = Character("spider jerselem")
         self.character.attributes["Strength"] = tk.IntVar()
+        self.character.attributes["Strength"].set(1)
         self.character.attributes["Smarts"] = tk.IntVar()
+        self.character.attributes["Smarts"].set(1)
         self.character.attributes["Dexterity"] = tk.IntVar()
+        self.character.attributes["Dexterity"].set(1)
         self.character.attributes["Wisdom"] = tk.IntVar()
+        self.character.attributes["Wisdom"].set(1)
         self.character.attributes["Charisma"] = tk.IntVar()
+        self.character.attributes["Charisma"].set(1)
         self.character.attributes["Spirit"] = tk.IntVar()
+        self.character.attributes["Spirit"].set(1)
 
         self.name_label = tk.Label(
             master,
@@ -29,46 +36,39 @@ class GlobalFrequency:
         )
         self.name_label.pack()
 
-        # This is where the buttons and stuff start
-        # Making a dict to store the buttons
+        def feature_buttons(self, feature):
+            """making buttons"""
+            self.features[feature] = {}
+            self.features[feature]["frame"] = tk.Frame(master).pack(fill = X)
+            
+            self.features[feature]["increase_button"] = tk.Button(self.features[feature]["frame"],
+                text=f"{feature} up",
+                font=("Courier", 15),
+                width=15,
+                command=lambda: self.character.increase_attribute(
+                        f"{feature}"
+                    )
+                ).pack()
 
-        # spirit Buttons and stuff.
+            self.features[feature]["decrease_button"] = tk.Button(
+                self.features[feature]["frame"],
+                text=f"{feature} down",
+                font=("Courier", 15),
+                width=15,
+                command=lambda: self.character.decrease_attribute(
+                        f"{feature}"
+                    )
+                ).pack()
+            
+            self.features[feature]["label"] = tk.Label(
+                self.features[feature]["frame"],
+                 textvariable=self.character.attributes[
+                        f"{feature}"
+                    ],
+                    font=("Courier", 15),
+                ).pack()
 
-        self.spi_frame = tk.Frame(
-            master, width=400
-        )  # spirit frame
-        self.spi_frame.pack(fill=X)
-
-        self.spi_btn_1 = tk.Button(
-            self.spi_frame,
-            text="Spirit up",
-            font=("Courier", 15),
-            width=15,
-            command=lambda: self.character.increase_attribute(
-                "Spirit"
-            ),
-        )
-        self.spi_btn_1.pack(side=LEFT)
-
-        self.spi_btn_2 = tk.Button(
-            self.spi_frame,
-            text="Spirit down",
-            font=("Courier", 15),
-            width=15,
-            command=lambda: self.character.decrease_attribute(
-                "Spirit"
-            ),
-        )
-        self.spi_btn_2.pack(side=LEFT)
-
-        self.spi_label = tk.Label(
-            self.spi_frame,
-            textvariable=self.character.attributes[
-                "Spirit"
-            ],
-            font=("Courier", 15),
-        )
-        self.spi_label.pack()
+        self.feature_buttons("Strength")
 
         # making a label to describe the character
         self.character_frame = tk.Frame(
@@ -149,8 +149,14 @@ class GlobalFrequency:
         self.roll_btn.config(relief=SUNKEN)
         self.roll_btn.pack()
 
+        
+
+
+
 
 root = tk.Tk()
 root.geometry("400x600")
 gui = GlobalFrequency(root)
 root.mainloop()
+
+
