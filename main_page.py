@@ -36,41 +36,11 @@ class GlobalFrequency:
         )
         self.name_label.pack()
 
-        def feature_buttons(self, feature):
-            """making buttons"""
-            self.features[feature] = {}
-            self.features[feature]["frame"] = tk.Frame(master).pack(fill = X)
-            
-            self.features[feature]["increase_button"] = tk.Button(self.features[feature]["frame"],
-                text=f"{feature} up",
-                font=("Courier", 15),
-                width=15,
-                command=lambda: self.character.increase_attribute(
-                        f"{feature}"
-                    )
-                ).pack()
+        for key in self.character.attributes:
+            self.feature_buttons(key)
 
-            self.features[feature]["decrease_button"] = tk.Button(
-                self.features[feature]["frame"],
-                text=f"{feature} down",
-                font=("Courier", 15),
-                width=15,
-                command=lambda: self.character.decrease_attribute(
-                        f"{feature}"
-                    )
-                ).pack()
-            
-            self.features[feature]["label"] = tk.Label(
-                self.features[feature]["frame"],
-                 textvariable=self.character.attributes[
-                        f"{feature}"
-                    ],
-                    font=("Courier", 15),
-                ).pack()
 
-        self.feature_buttons("Strength")
-
-        # making a label to describe the character
+                # making a label to describe the character
         self.character_frame = tk.Frame(
             master, width=400, bd=3
         )
@@ -148,6 +118,49 @@ class GlobalFrequency:
         )
         self.roll_btn.config(relief=SUNKEN)
         self.roll_btn.pack()
+
+
+    def feature_buttons(self, feature):
+        """making buttons"""
+        self.features[feature] = {}
+        self.features[feature]["frame"] = tk.Frame(
+            self.master, 
+            width = 400
+        )
+        self.features[feature]["frame"].pack()
+        
+        self.features[feature]["increase_button"] = tk.Button(self.features[feature]["frame"],
+            text=f"{feature} up",
+            font=("Courier", 15),
+            width=15,
+            command=lambda: self.character.increase_attribute(
+                    f"{feature}"
+                )
+            ).pack(side = LEFT)
+
+        self.features[feature]["decrease_button"] = tk.Button(
+            self.features[feature]["frame"],
+            text=f"{feature} down",
+            font=("Courier", 15),
+            width=15,
+            command=lambda: self.character.decrease_attribute(
+                    f"{feature}"
+                )
+            ).pack(side = LEFT)
+        
+        self.features[feature]["label"] = tk.Label(
+            self.features[feature]["frame"],
+             textvariable=self.character.attributes[
+                    f"{feature}"
+                ],
+                font=("Courier", 15),
+            ).pack(side = RIGHT)
+
+
+
+
+
+
 
         
 
