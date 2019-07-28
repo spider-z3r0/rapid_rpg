@@ -5,6 +5,7 @@ from character import Character
 from dice_roll import Die
 
 
+
 class GlobalFrequency:
     """The overall class for the app"""
 
@@ -15,7 +16,7 @@ class GlobalFrequency:
         self.features = {}
 
         # trying to set this up with a character
-        self.character = Character("spider jerselem")
+        self.character = Character("Spider Jeruselem")
         self.character.attributes["Strength"] = tk.IntVar()
         self.character.attributes["Strength"].set(1)
         self.character.attributes["Smarts"] = tk.IntVar()
