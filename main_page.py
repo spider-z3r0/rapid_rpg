@@ -3,10 +3,11 @@ from tkinter import *
 import tkinter as tk
 from character import Character
 from dice_roll import Die
+from front_page import FrontPage
 
 
 
-class GlobalFrequency:
+class GlobalFrequency(tk.Frame):
     """The overall class for the app"""
 
     def __init__(self, master):
@@ -16,7 +17,7 @@ class GlobalFrequency:
         self.features = {}
 
         # trying to set this up with a character
-        self.character = Character("spider jeruselem")
+        self.character = Character('spider jeruselem')
         self.character.attributes["Strength"] = tk.IntVar()
         self.character.attributes["Strength"].set(1)
         self.character.attributes["Smarts"] = tk.IntVar()
@@ -130,7 +131,8 @@ class GlobalFrequency:
         )
         self.features[feature]["frame"].pack()
         
-        self.features[feature]["increase_button"] = tk.Button(self.features[feature]["frame"],
+        self.features[feature]["increase_button"] = tk.Button(
+            self.features[feature]["frame"],
             text=f"{feature} up",
             font=("Courier", 15),
             width=15,
@@ -167,10 +169,10 @@ class GlobalFrequency:
 
 
 
-
-root = tk.Tk()
-root.geometry("400x600")
-gui = GlobalFrequency(root)
-root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.geometry("400x600")
+    gui = GlobalFrequency(root)
+    root.mainloop()
 
 
