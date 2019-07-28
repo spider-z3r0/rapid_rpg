@@ -2,9 +2,7 @@
 
 from tkinter import *
 import tkinter as tk
-from character import Character
-from dice_roll import Die
-from main_page import GlobalFrequency
+
 
 class FrontPage:
     """This is a class to make the front page"""
@@ -46,7 +44,7 @@ class FrontPage:
             anchor = 'n'
         )
 
-        
+
 
 root = tk.Tk()
 root.geometry("400x600")
