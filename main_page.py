@@ -16,7 +16,7 @@ class GlobalFrequency:
         self.features = {}
 
         # trying to set this up with a character
-        self.character = Character("Spider Jeruselem")
+        self.character = Character("spider jeruselem")
         self.character.attributes["Strength"] = tk.IntVar()
         self.character.attributes["Strength"].set(1)
         self.character.attributes["Smarts"] = tk.IntVar()
