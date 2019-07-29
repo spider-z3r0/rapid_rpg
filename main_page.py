@@ -18,6 +18,9 @@ class GlobalFrequency(tk.Frame):
         master.title = "Global Frequency"
         self.features = {}
 
+        self.mainframe = tk.Frame(self)
+        self.mainframe.pack(expand=True, fill=tk.BOTH)
+
         # trying to set this up with a character
         self.character = Character('spider jeruselem')
         self.character.attributes["Strength"] = tk.IntVar()
@@ -34,7 +37,7 @@ class GlobalFrequency(tk.Frame):
         self.character.attributes["Spirit"].set(1)
 
         self.name_label = tk.Label(
-            master,
+            self.mainframe,
             text=self.character.name.title(),
             font=("Courier", 20),
         )
@@ -46,7 +49,7 @@ class GlobalFrequency(tk.Frame):
 
                 # making a label to describe the character
         self.character_frame = tk.Frame(
-            master, width=400, bd=3
+            self.mainframe, width=400, bd=3
         )
         self.character_frame.pack(fill=tk.X)
 
@@ -59,7 +62,7 @@ class GlobalFrequency(tk.Frame):
 
         # setting up check button section
         self.check_frame = tk.Frame(
-            master, width=400, bd=3, bg="grey"
+            self.mainframe, width=400, bd=3, bg="grey"
         )
         self.check_frame.pack()
 
@@ -107,7 +110,7 @@ class GlobalFrequency(tk.Frame):
 
         # trying to make a dice work, the label to print the result is in dice_roll.py
         self.dice_frame = tk.Frame(
-            master, width=400, bd=3
+            self.mainframe, width=400, bd=3
         )  # spirit frame
         self.dice_frame.place(
             relx=0.5, rely=0.4, anchor="n"
@@ -128,7 +131,7 @@ class GlobalFrequency(tk.Frame):
         """making buttons"""
         self.features[feature] = {}
         self.features[feature]["frame"] = tk.Frame(
-            self.master, 
+            self.mainframe, 
             width = 400
         )
         self.features[feature]["frame"].pack()

@@ -26,7 +26,9 @@ class GUI(tk.Tk):
             command=self.show_second,
         )
         self.second_btn.pack(side=tk.LEFT)
+
         self.navig_frame.pack()
+
 
         self.front = FrontPage(self)
         self.front.pack(expand=True, fill=tk.BOTH)
