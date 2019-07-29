@@ -1,5 +1,4 @@
 """The aim here is to prototype the look of the main page"""
-from tkinter import *
 import tkinter as tk
 from character import Character
 from dice_roll import Die
@@ -13,6 +12,9 @@ class GlobalFrequency(tk.Frame):
     def __init__(self, master):
         """intialise the attributes of the variable"""
         self.master = master
+        super().__init__(self.master)
+        self.input = tk.StringVar()
+
         master.title = "Global Frequency"
         self.features = {}
 
@@ -46,7 +48,7 @@ class GlobalFrequency(tk.Frame):
         self.character_frame = tk.Frame(
             master, width=400, bd=3
         )
-        self.character_frame.pack(fill=X)
+        self.character_frame.pack(fill=tk.X)
 
         self.character_label = tk.Label(
             self.character_frame,
@@ -66,42 +68,42 @@ class GlobalFrequency(tk.Frame):
             text="Str",
             font=("Courier", 15),
         )  # strength check
-        self.st_check.pack(side=LEFT)
+        self.st_check.pack(side=tk.LEFT)
 
         self.sm_check = tk.Checkbutton(
             self.check_frame,
             text="Sma",
             font=("Courier", 15),
         )  # smarts check
-        self.sm_check.pack(side=LEFT)
+        self.sm_check.pack(side=tk.LEFT)
 
         self.de_check = tk.Checkbutton(
             self.check_frame,
             text="dex",
             font=("Courier", 15),
         )  # dexterity check
-        self.de_check.pack(side=LEFT)
+        self.de_check.pack(side=tk.LEFT)
 
         self.wi_check = tk.Checkbutton(
             self.check_frame,
             text="Wis",
             font=("Courier", 15),
         )  # wisdom check
-        self.wi_check.pack(side=LEFT)
+        self.wi_check.pack(side=tk.LEFT)
 
         self.ca_check = tk.Checkbutton(
             self.check_frame,
             text="Cha",
             font=("Courier", 15),
         )  # charisma check
-        self.ca_check.pack(side=LEFT)
+        self.ca_check.pack(side=tk.LEFT)
 
         self.sp_check = tk.Checkbutton(
             self.check_frame,
             text="Spi",
             font=("Courier", 15),
         )  # spirit check
-        self.sp_check.pack(side=LEFT)
+        self.sp_check.pack(side=tk.LEFT)
 
         # trying to make a dice work, the label to print the result is in dice_roll.py
         self.dice_frame = tk.Frame(
@@ -118,7 +120,7 @@ class GlobalFrequency(tk.Frame):
             width=15,
             command=lambda: self.dice.roll(),
         )
-        self.roll_btn.config(relief=SUNKEN)
+        self.roll_btn.config(relief=tk.SUNKEN)
         self.roll_btn.pack()
 
 
@@ -139,7 +141,7 @@ class GlobalFrequency(tk.Frame):
             command=lambda: self.character.increase_attribute(
                     f"{feature}"
                 )
-            ).pack(side = LEFT)
+            ).pack(side = tk.LEFT)
 
         self.features[feature]["decrease_button"] = tk.Button(
             self.features[feature]["frame"],
@@ -149,7 +151,7 @@ class GlobalFrequency(tk.Frame):
             command=lambda: self.character.decrease_attribute(
                     f"{feature}"
                 )
-            ).pack(side = LEFT)
+            ).pack(side = tk.LEFT)
         
         self.features[feature]["label"] = tk.Label(
             self.features[feature]["frame"],
@@ -157,7 +159,7 @@ class GlobalFrequency(tk.Frame):
                     f"{feature}"
                 ],
                 font=("Courier", 15),
-            ).pack(side = RIGHT)
+            ).pack(side = tk.RIGHT)
 
 
 
@@ -168,11 +170,5 @@ class GlobalFrequency(tk.Frame):
         
 
 
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.geometry("400x600")
-    gui = GlobalFrequency(root)
-    root.mainloop()
 
 
