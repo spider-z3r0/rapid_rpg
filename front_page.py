@@ -2,15 +2,18 @@
 import tkinter as tk
 
 
+
+
 class FrontPage(tk.Frame):
     """This is a class to make the front page
     it inherits from tk.Frame
     """
 
-    def __init__(self, master):
-        self.master = master
-        super().__init__(self.master)
-        self.input = tk.StringVar()
+    def __init__(self, parent, controller, pages):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        
 
         self.mainframe = tk.Frame(self)
         self.mainframe.pack(expand=True, fill=tk.BOTH)
@@ -34,7 +37,6 @@ class FrontPage(tk.Frame):
 
         self.name_entry = tk.Entry(
             self.mainframe,
-            textvariable=self.input,
             justify=tk.CENTER,
         )
         self.name_entry.place(

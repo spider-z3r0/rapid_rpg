@@ -1,22 +1,23 @@
 """The aim here is to prototype the look of the main page"""
 import tkinter as tk
+import front_page
 from character import Character
 from dice_roll import Die
-from front_page import FrontPage
 
 
 
-class GlobalFrequency(tk.Frame):
+
+
+class GamePage(tk.Frame):
     """The overall class for the app"""
 
     def __init__(self, master):
         """intialise the attributes of the variable"""
         self.master = master
         super().__init__(self.master)
-        self.input = tk.StringVar()
-
-        master.title = "Global Frequency"
+        self.master.title = "Global Frequency"
         self.features = {}
+
 
         self.mainframe = tk.Frame(self)
         self.mainframe.pack(expand=True, fill=tk.BOTH)

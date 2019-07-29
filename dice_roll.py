@@ -22,7 +22,7 @@ class Die():
         value = random.randint(1,6)
         result = int(value) + 1
         self.label_var.set(f"result: {value} + 1 = {result}")
-        print (f"label_var = {value}")
+
 
 """
 ------Whats left?------

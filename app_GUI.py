@@ -1,48 +1,39 @@
 import tkinter as tk
-from front_page import FrontPage
-from main_page import GlobalFrequency
+import front_page
 
 
 class GUI(tk.Tk):
-    """this is the app
-    it inherits from tk.Tk
-    """
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+        container = tk.Frame(self)
 
-    def __init__(self):
-        super().__init__()
-        self.title = "Global Frequency"
-        self.geometry("400x600")
+        # Initialize Window
+        container.pack(side="top", fill="both", expand=True)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+        self.frames = {}
 
-        self.navig_frame = tk.Frame(self)
-        self.first_btn = tk.Button(
-            self.navig_frame,
-            text="show_first",
-            command=self.show_first,
-        )
-        self.first_btn.pack(side=tk.LEFT)
-        self.second_btn = tk.Button(
-            self.navig_frame,
-            text="show_second",
-            command=self.show_second,
-        )
-        self.second_btn.pack(side=tk.LEFT)
+        pages = [front_page.FrontPage]
+        # Load all pages
+        for F in pages:
+            frame = F(container, self, pages)
+            self.frames[F] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
+        self.show_frame(front_page.FrontPage)
 
-        self.navig_frame.pack()
+        self.show_frame(front_page.FrontPage)
 
+    # shows the desired frame
+    def show_frame(self, cont):
+        frame = self.frames[cont]
+        frame.tkraise()
+        return True
 
-        self.front = FrontPage(self)
-        self.front.pack(expand=True, fill=tk.BOTH)
-
-        self.second = GlobalFrequency(self)
-
-    def show_first(self):
-        self.second.pack_forget()
-        self.front.pack(expand=True, fill=tk.BOTH)
-
-    def show_second(self):
-        self.front.pack_forget()
-        self.second.pack(expand=True, fill=tk.BOTH)
+    # passes text to the window StartPage
+    def pass_on_text(self, text):
+        self.frames[StartPage].get_text(text)
 
 
-gui = GUI()
-gui.mainloop()
+app = GUI()
+app.geometry("400x600")
+app.mainloop()
