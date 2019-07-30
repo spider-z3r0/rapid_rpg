@@ -4,16 +4,15 @@ import tkinter as tk
 
 
 
+
 class FrontPage(tk.Frame):
     """This is a class to make the front page
     it inherits from tk.Frame
     """
 
-    def __init__(self, parent, controller, pages):
+    def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-
-        
 
         self.mainframe = tk.Frame(self)
         self.mainframe.pack(expand=True, fill=tk.BOTH)
@@ -78,6 +77,7 @@ class FrontPage(tk.Frame):
             text="DEPLOY",
             font=("Courier", 15),
             justify=tk.CENTER,
+            command = lambda: controller.show_frame("GamePage")
         )
         self.con_btn.place(
             relx=0.75,

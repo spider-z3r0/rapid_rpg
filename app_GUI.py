@@ -1,5 +1,6 @@
 import tkinter as tk
 import front_page
+import main_page
 
 
 class GUI(tk.Tk):
@@ -11,17 +12,20 @@ class GUI(tk.Tk):
         container.pack(side="top", fill="both", expand=True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
+
+
         self.frames = {}
+        for F in (front_page.FrontPage,main_page.GamePage):
+            page_name = F.__name__
+            frame = F(parent=container, controller=self)
+            self.frames[page_name] = frame
 
-        pages = [front_page.FrontPage]
-        # Load all pages
-        for F in pages:
-            frame = F(container, self, pages)
-            self.frames[F] = frame
+            # put all of the pages in the same location;
+            # the one on the top of the stacking order
+            # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
-        self.show_frame(front_page.FrontPage)
 
-        self.show_frame(front_page.FrontPage)
+        self.show_frame("FrontPage")
 
     # shows the desired frame
     def show_frame(self, cont):

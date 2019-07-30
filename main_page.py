@@ -11,11 +11,11 @@ from dice_roll import Die
 class GamePage(tk.Frame):
     """The overall class for the app"""
 
-    def __init__(self, master):
-        """intialise the attributes of the variable"""
-        self.master = master
-        super().__init__(self.master)
-        self.master.title = "Global Frequency"
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="This is the start page")
+        label.pack(side="top", fill="x", pady=10)
         self.features = {}
 
 
