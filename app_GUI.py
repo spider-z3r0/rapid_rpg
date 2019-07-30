@@ -13,6 +13,7 @@ class GUI(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
+        self.name = tk.StringVar()
 
         self.frames = {}
         for F in (front_page.FrontPage,main_page.GamePage):
@@ -27,17 +28,27 @@ class GUI(tk.Tk):
 
         self.show_frame("FrontPage")
 
+
+
+
     # shows the desired frame
     def show_frame(self, cont):
         frame = self.frames[cont]
         frame.tkraise()
         return True
 
-    # passes text to the window StartPage
-    def pass_on_text(self, text):
-        self.frames[StartPage].get_text(text)
+    def getname(self):
+        self.name.set(self.frames[front_page.FrontPage].name_entry.get())
+        print(self.name.get())
+
+
+
+
 
 
 app = GUI()
 app.geometry("400x600")
 app.mainloop()
+
+
+

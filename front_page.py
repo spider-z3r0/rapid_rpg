@@ -1,4 +1,3 @@
-
 import tkinter as tk
 
 
@@ -46,7 +45,7 @@ class FrontPage(tk.Frame):
             self.mainframe,
             text="Save",
             font=("Courier", 15),
-            command=lambda: self.getname(),
+            command= lambda: controller.getname
         )
         self.ent_btn.place(relx=0.5, rely=0.43, anchor="n")
 
@@ -87,5 +86,3 @@ class FrontPage(tk.Frame):
             width=170,
         )
 
-    def getname(self):
-        self.input.set(self.name_entry.get())
