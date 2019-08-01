@@ -4,6 +4,7 @@ import tkinter as tk
 
 
 
+
 class FrontPage(tk.Frame):
     """This is a class to make the front page
     it inherits from tk.Frame
@@ -16,12 +17,15 @@ class FrontPage(tk.Frame):
         self.mainframe = tk.Frame(self)
         self.mainframe.pack(expand=True, fill=tk.BOTH)
 
-        self.name_label = tk.Label(
+
+
+
+        self.top_label = tk.Label(
             self.mainframe,
             text="Welcome agent:",
             font=("Courier", 20),
         )
-        self.name_label.pack()
+        self.top_label.pack()
 
         self.inst_label1 = tk.Label(
             self.mainframe,
@@ -33,8 +37,11 @@ class FrontPage(tk.Frame):
             relx=0.5, rely=0.3, anchor="n"
         )
 
+        self.v = tk.StringVar()
+
         self.name_entry = tk.Entry(
             self.mainframe,
+            textvariable = self.v.get(),
             justify=tk.CENTER,
         )
         self.name_entry.place(
@@ -45,9 +52,21 @@ class FrontPage(tk.Frame):
             self.mainframe,
             text="Save",
             font=("Courier", 15),
-            command= lambda: controller.getname
+            command = self.on_button
+
         )
         self.ent_btn.place(relx=0.5, rely=0.43, anchor="n")
+
+
+
+        self.output_frame = tk.Label(
+            self.mainframe,
+            text = self.v.get(),
+            font = ("Courier", 15),
+            bd = 10,
+            relief=tk.GROOVE
+        )
+        self.output_frame.pack()
 
         self.btn_frame = tk.Frame(
             self.mainframe,
@@ -83,6 +102,13 @@ class FrontPage(tk.Frame):
             rely=0.66,
             anchor="n",
             height=120,
-            width=170,
+            width=170,            
         )
+
+    def on_button(self):
+        self.output_frame.configure(text = self.name_entry.get())
+        self.forward_label.configure(text = self.name_entry.get())
+
+
+
 

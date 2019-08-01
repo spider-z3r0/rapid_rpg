@@ -9,9 +9,8 @@ import tkinter as tk
 class Character:
     """An attempt to model a charachter"""
 
-    def __init__(self, name):
+    def __init__(self):
         """initialize the attributes of the character"""
-        self.name = name
         self.attributes = {}
 
     def increase_attribute(self, var):

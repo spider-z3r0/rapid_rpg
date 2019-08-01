@@ -1,7 +1,6 @@
 """The aim here is to prototype the look of the main page"""
 import tkinter as tk
 from tkinter import SUNKEN
-import front_page
 from character import Character
 from dice_roll import Die
 
@@ -19,12 +18,14 @@ class GamePage(tk.Frame):
         label.pack(side="top", fill="x", pady=10)
         self.features = {}
 
+        front_page = self.controller.get_page('FrontPage')
+        self.character_name = front_page.name_entry.get()
 
         self.mainframe = tk.Frame(self)
         self.mainframe.pack(expand=True, fill=tk.BOTH)
 
         # trying to set this up with a character
-        self.character = Character(self.controller.name.get())
+        self.character = Character()
         self.character.attributes["Strength"] = tk.IntVar()
         self.character.attributes["Strength"].set(1)
         self.character.attributes["Smarts"] = tk.IntVar()
@@ -40,12 +41,12 @@ class GamePage(tk.Frame):
 
         self.name_label = tk.Label(
             self.mainframe,
-            text=self.character.name.title(),
             font=("Courier", 20),
-            bd = 10,
+            bd = 1,
             relief = SUNKEN
         )
         self.name_label.pack()
+
 
         for key in self.character.attributes:
             self.feature_buttons(key)
