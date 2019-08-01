@@ -18,7 +18,7 @@ class GamePage(tk.Frame):
         label.pack(side="top", fill="x", pady=10)
         self.features = {}
 
-        front_page = self.controller.get_page('FrontPage')
+        front_page = self.controller.get_page("FrontPage")
         self.character_name = front_page.v
 
         self.mainframe = tk.Frame(self)
@@ -41,7 +41,7 @@ class GamePage(tk.Frame):
 
         self.name_label = tk.Label(
             self.mainframe,
-            text = front_page.v.get(),
+            textvariable = front_page.v,
             font=("Courier", 20),
             bd = 1,
             relief = SUNKEN

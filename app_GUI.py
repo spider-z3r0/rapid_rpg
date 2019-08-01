@@ -1,4 +1,7 @@
+"""This is the main app, all other frames and the significant funtions"""
+
 import tkinter as tk
+#Importing the other pages from the app. 
 from front_page import FrontPage
 from main_page import GamePage
 
@@ -29,23 +32,15 @@ class GUI(tk.Tk):
         self.show_frame("FrontPage")
 
 
-
-
-
-
-    # shows the desired frame
     def show_frame(self, page_name):
+        """Shows the desired frame"""
         frame = self.frames[page_name]
         frame.tkraise()
 
 
     def get_page(self, page_name):
+        """allows you to create a reference to other pages"""
         return self.frames[page_name]
-
-
-
-
-
 
 
 app = GUI()
