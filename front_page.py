@@ -3,9 +3,6 @@ from main_page import GamePage
 
 
 
-
-
-
 class FrontPage(tk.Frame):
     """This is a class to make the front page
     it inherits from tk.Frame
@@ -55,12 +52,10 @@ class FrontPage(tk.Frame):
         )
         self.ent_btn.place(relx=0.5, rely=0.43, anchor="n")
 
-
-
         self.output_frame = tk.Label(
             self.mainframe,
             font = ("Courier", 15),
-            bd = 10,
+            bd = 1,
             relief=tk.GROOVE
         )
         self.output_frame.pack()
@@ -94,6 +89,7 @@ class FrontPage(tk.Frame):
             justify=tk.CENTER,
             command = lambda: controller.show_frame("GamePage")
         )
+        
         self.con_btn.place(
             relx=0.75,
             rely=0.66,

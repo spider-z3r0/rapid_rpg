@@ -14,9 +14,16 @@ class GamePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="This is the start page")
-        label.pack(side="top", fill="x", pady=10)
         self.features = {}
+        self.atts = [
+            'Str',
+            'Sma',
+            'Dex',
+            'Wiz',
+            'Cha',
+            'Spi',
+            ]
+        self.att_buttons = {}
 
         front_page = self.controller.get_page("FrontPage")
         self.character_name = front_page.v
@@ -48,12 +55,30 @@ class GamePage(tk.Frame):
         )
         self.name_label.pack()
 
+                # setting up check button section
+        self.check_frame = tk.Frame(
+            self.mainframe, width=400, bd=3, bg="grey"
+        )
+        self.check_frame.place(
+            relx = 0.5, 
+            rely = 0.34,
+            anchor = 'n')
+
 
         for key in self.character.attributes:
             self.feature_buttons(key)
 
+        for i in self.atts:
+            self.att_buttons[i] = {}
+            self.att_buttons[i]['checkbutton'] = tk.Checkbutton(
+                self.check_frame,
+                text = i,
+                font=("Courier", 15),
+                ).pack(side = tk.LEFT)
 
-                # making a label to describe the character
+
+
+        # making a label to describe the character
         self.character_frame = tk.Frame(
             self.mainframe, width=400, bd=3
         )
@@ -65,54 +90,6 @@ class GamePage(tk.Frame):
             font=("Courier", 15),
         )
         self.character_label.pack()
-
-        # setting up check button section
-        self.check_frame = tk.Frame(
-            self.mainframe, width=400, bd=3, bg="grey"
-        )
-        self.check_frame.pack()
-
-        self.st_check = tk.Checkbutton(
-            self.check_frame,
-            text="Str",
-            font=("Courier", 15),
-        )  # strength check
-        self.st_check.pack(side=tk.LEFT)
-
-        self.sm_check = tk.Checkbutton(
-            self.check_frame,
-            text="Sma",
-            font=("Courier", 15),
-        )  # smarts check
-        self.sm_check.pack(side=tk.LEFT)
-
-        self.de_check = tk.Checkbutton(
-            self.check_frame,
-            text="dex",
-            font=("Courier", 15),
-        )  # dexterity check
-        self.de_check.pack(side=tk.LEFT)
-
-        self.wi_check = tk.Checkbutton(
-            self.check_frame,
-            text="Wis",
-            font=("Courier", 15),
-        )  # wisdom check
-        self.wi_check.pack(side=tk.LEFT)
-
-        self.ca_check = tk.Checkbutton(
-            self.check_frame,
-            text="Cha",
-            font=("Courier", 15),
-        )  # charisma check
-        self.ca_check.pack(side=tk.LEFT)
-
-        self.sp_check = tk.Checkbutton(
-            self.check_frame,
-            text="Spi",
-            font=("Courier", 15),
-        )  # spirit check
-        self.sp_check.pack(side=tk.LEFT)
 
         # trying to make a dice work, the label to print the result is in dice_roll.py
         self.dice_frame = tk.Frame(
@@ -169,6 +146,10 @@ class GamePage(tk.Frame):
                 ],
                 font=("Courier", 15),
             ).pack(side = tk.RIGHT)
+
+
+
+
 
 
 
