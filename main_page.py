@@ -5,9 +5,6 @@ from character import Character
 from dice_roll import Die
 
 
-
-
-
 class GamePage(tk.Frame):
     """The overall class for the app"""
 
@@ -15,14 +12,7 @@ class GamePage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.features = {}
-        self.atts = [
-            'Str',
-            'Sma',
-            'Dex',
-            'Wiz',
-            'Cha',
-            'Spi',
-            ]
+        self.atts = ["Str", "Sma", "Dex", "Wiz", "Cha", "Spi"]
         self.att_buttons = {}
 
         front_page = self.controller.get_page("FrontPage")
@@ -48,56 +38,38 @@ class GamePage(tk.Frame):
 
         self.name_label = tk.Label(
             self.mainframe,
-            textvariable = front_page.v,
+            textvariable=front_page.v,
             font=("Courier", 20),
-            bd = 1,
-            relief = SUNKEN
+            bd=1,
+            relief=SUNKEN,
         )
         self.name_label.pack()
 
-                # setting up check button section
-        self.check_frame = tk.Frame(
-            self.mainframe, width=400, bd=3, bg="grey"
-        )
-        self.check_frame.place(
-            relx = 0.5, 
-            rely = 0.34,
-            anchor = 'n')
-
+        # setting up check button section
+        self.check_frame = tk.Frame(self.mainframe, width=400, bd=3, bg="grey")
+        self.check_frame.place(relx=0.5, rely=0.34, anchor="n")
 
         for key in self.character.attributes:
             self.feature_buttons(key)
 
         for i in self.atts:
             self.att_buttons[i] = {}
-            self.att_buttons[i]['checkbutton'] = tk.Checkbutton(
-                self.check_frame,
-                text = i,
-                font=("Courier", 15),
-                ).pack(side = tk.LEFT)
-
-
+            self.att_buttons[i]["checkbutton"] = tk.Checkbutton(
+                self.check_frame, text=i, font=("Courier", 15)
+            ).pack(side=tk.LEFT)
 
         # making a label to describe the character
-        self.character_frame = tk.Frame(
-            self.mainframe, width=400, bd=3
-        )
+        self.character_frame = tk.Frame(self.mainframe, width=400, bd=3)
         self.character_frame.pack(fill=tk.X)
 
         self.character_label = tk.Label(
-            self.character_frame,
-            text="Activate Attibute",
-            font=("Courier", 15),
+            self.character_frame, text="Activate Attibute", font=("Courier", 15)
         )
         self.character_label.pack()
 
         # trying to make a dice work, the label to print the result is in dice_roll.py
-        self.dice_frame = tk.Frame(
-            self.mainframe, width=400, bd=3
-        )  # spirit frame
-        self.dice_frame.place(
-            relx=0.5, rely=0.5, anchor="n"
-        )
+        self.dice_frame = tk.Frame(self.mainframe, width=400, bd=3)  # spirit frame
+        self.dice_frame.place(relx=0.5, rely=0.5, anchor="n")
         self.dice = Die(0, self.dice_frame)
         self.roll_btn = tk.Button(
             self.dice_frame,
@@ -109,56 +81,30 @@ class GamePage(tk.Frame):
         self.roll_btn.config(relief=tk.SUNKEN)
         self.roll_btn.pack()
 
-
     def feature_buttons(self, feature):
         """making buttons"""
         self.features[feature] = {}
-        self.features[feature]["frame"] = tk.Frame(
-            self.mainframe, 
-            width = 400
-        )
+        self.features[feature]["frame"] = tk.Frame(self.mainframe, width=400)
         self.features[feature]["frame"].pack()
-        
+
         self.features[feature]["increase_button"] = tk.Button(
             self.features[feature]["frame"],
             text=f"{feature} up",
             font=("Courier", 15),
             width=15,
-            command=lambda: self.character.increase_attribute(
-                    f"{feature}"
-                )
-            ).pack(side = tk.LEFT)
+            command=lambda: self.character.increase_attribute(f"{feature}"),
+        ).pack(side=tk.LEFT)
 
         self.features[feature]["decrease_button"] = tk.Button(
             self.features[feature]["frame"],
             text=f"{feature} down",
             font=("Courier", 15),
             width=15,
-            command=lambda: self.character.decrease_attribute(
-                    f"{feature}"
-                )
-            ).pack(side = tk.LEFT)
-        
+            command=lambda: self.character.decrease_attribute(f"{feature}"),
+        ).pack(side=tk.LEFT)
+
         self.features[feature]["label"] = tk.Label(
             self.features[feature]["frame"],
-             textvariable=self.character.attributes[
-                    f"{feature}"
-                ],
-                font=("Courier", 15),
-            ).pack(side = tk.RIGHT)
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
+            textvariable=self.character.attributes[f"{feature}"],
+            font=("Courier", 15),
+        ).pack(side=tk.RIGHT)
