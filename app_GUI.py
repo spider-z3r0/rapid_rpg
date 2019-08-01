@@ -17,8 +17,6 @@ class GUI(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-        self.frontpage = FrontPage
-        self.gamepage = GamePage
 
         self.frames = {}
         for F in (FrontPage, GamePage):

@@ -54,8 +54,9 @@ class FrontPage(tk.Frame):
 
         self.output_frame = tk.Label(
             self.mainframe,
+            text = "Please enter your codename below",
             font = ("Courier", 15),
-            bd = 1,
+            bd = 0,
             relief=tk.GROOVE
         )
         self.output_frame.pack()
@@ -89,7 +90,7 @@ class FrontPage(tk.Frame):
             justify=tk.CENTER,
             command = lambda: controller.show_frame("GamePage")
         )
-        
+
         self.con_btn.place(
             relx=0.75,
             rely=0.66,
@@ -100,7 +101,7 @@ class FrontPage(tk.Frame):
 
     def on_button(self):
         self.v.set(self.name_entry.get())
-        self.output_frame.configure(text = self.v.get())
+        
 
 
 
