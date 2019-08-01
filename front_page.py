@@ -1,4 +1,5 @@
 import tkinter as tk
+from main_page import GamePage
 
 
 
@@ -16,9 +17,6 @@ class FrontPage(tk.Frame):
 
         self.mainframe = tk.Frame(self)
         self.mainframe.pack(expand=True, fill=tk.BOTH)
-
-
-
 
         self.top_label = tk.Label(
             self.mainframe,
@@ -61,7 +59,6 @@ class FrontPage(tk.Frame):
 
         self.output_frame = tk.Label(
             self.mainframe,
-            text = self.v.get(),
             font = ("Courier", 15),
             bd = 10,
             relief=tk.GROOVE
@@ -106,8 +103,12 @@ class FrontPage(tk.Frame):
         )
 
     def on_button(self):
-        self.output_frame.configure(text = self.name_entry.get())
-        self.forward_label.configure(text = self.name_entry.get())
+        self.v.set(self.name_entry.get())
+        self.output_frame.configure(text = self.v.get())
+
+
+
+
 
 
 

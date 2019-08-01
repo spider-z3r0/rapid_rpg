@@ -14,7 +14,8 @@ class GUI(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
-
+        self.frontpage = FrontPage
+        self.gamepage = GamePage
 
         self.frames = {}
         for F in (FrontPage, GamePage):
@@ -30,6 +31,8 @@ class GUI(tk.Tk):
 
 
 
+
+
     # shows the desired frame
     def show_frame(self, page_name):
         frame = self.frames[page_name]
@@ -38,8 +41,6 @@ class GUI(tk.Tk):
 
     def get_page(self, page_name):
         return self.frames[page_name]
-
-
 
 
 
