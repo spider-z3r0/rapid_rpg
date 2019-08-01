@@ -1,15 +1,16 @@
 """This module is about modeling the character and maybe defining the functions"""
 import tkinter as tk
 
+
+
 """I'm gonna start with the character"""
 
 
 class Character:
     """An attempt to model a charachter"""
 
-    def __init__(self, name):
+    def __init__(self):
         """initialize the attributes of the character"""
-        self.name = name
         self.attributes = {}
 
     def increase_attribute(self, var):
