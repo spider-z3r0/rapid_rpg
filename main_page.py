@@ -108,3 +108,22 @@ class GamePage(tk.Frame):
             textvariable=self.character.attributes[f"{feature}"],
             font=("Courier", 15),
         ).pack(side=tk.RIGHT)
+
+
+        self.btn_frame = tk.Frame(
+            self.mainframe, height=200, width=395, bd=4, relief=tk.GROOVE
+        )
+        self.btn_frame.place(relx=0.5, rely=0.6, anchor="n")
+
+        self.rules_btn = tk.Button(self.mainframe, text="RULES", font=("Courier", 15))
+        self.rules_btn.place(relx=0.25, rely=0.66, anchor="n", height=120, width=170)
+
+        self.con_btn = tk.Button(
+            self.mainframe,
+            text="RETURN",
+            font=("Courier", 15),
+            justify=tk.CENTER,
+            command=lambda: self.controller.show_frame("FrontPage"),
+        )
+
+        self.con_btn.place(relx=0.75, rely=0.66, anchor="n", height=120, width=170)
