@@ -6,7 +6,6 @@ import random
 import itertools
 
 
-
 class GamePage(tk.Frame):
     """The overall class for the app"""
 
@@ -65,11 +64,9 @@ class GamePage(tk.Frame):
         for (i, j) in zip(self.atts, self.v_list):
             self.att_buttons[i] = {}
             self.att_buttons[i]["checkbutton"] = tk.Checkbutton(
-                self.check_frame, text=i, font=("Courier", 15),
-                variable = j 
+                self.check_frame, text=i, font=("Courier", 15), variable=j
             )
             self.att_buttons[i]["checkbutton"].pack(side=tk.LEFT)
-
 
         # making a label to describe the character
         self.character_frame = tk.Frame(self.mainframe, width=400, bd=3)
@@ -85,10 +82,7 @@ class GamePage(tk.Frame):
         self.dice_frame.place(relx=0.5, rely=0.5, anchor="n")
         self.label_var = tk.IntVar()
         self.display = tk.Label(
-            self.dice_frame, 
-            relief="ridge", 
-            borderwidth=2, 
-            textvariable=self.label_var
+            self.dice_frame, relief="ridge", borderwidth=2, textvariable=self.label_var
         ).pack()
 
         self.roll_btn = tk.Button(
@@ -100,10 +94,6 @@ class GamePage(tk.Frame):
         )
         self.roll_btn.config(relief=tk.SUNKEN)
         self.roll_btn.pack()
-
-        print(self.att_buttons)
-
-
 
     def feature_buttons(self, feature):
         """making buttons"""
@@ -133,7 +123,6 @@ class GamePage(tk.Frame):
             font=("Courier", 15),
         ).pack(side=tk.RIGHT)
 
-
         self.btn_frame = tk.Frame(
             self.mainframe, height=200, width=395, bd=4, relief=tk.GROOVE
         )
@@ -151,7 +140,6 @@ class GamePage(tk.Frame):
         )
 
         self.con_btn.place(relx=0.75, rely=0.66, anchor="n", height=120, width=170)
-
 
     def roll(self):
         """Roll dice, add modifer and print a formatted result to the UI"""
@@ -180,4 +168,3 @@ class GamePage(tk.Frame):
             modifier = self.character.attributes["Spirit"].get()
             result = int(value) + int(modifier)
             self.label_var.set(f"result: {value} + {modifier} = {result}")
-
