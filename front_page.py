@@ -27,7 +27,7 @@ class FrontPage(tk.Frame):
         self.v = tk.StringVar()
 
         self.name_entry = tk.Entry(
-            self.mainframe, textvariable=self.v.get(), justify=tk.CENTER
+            self.mainframe, textvariable=self.v.get().title(), justify=tk.CENTER
         )
         self.name_entry.place(relx=0.5, rely=0.37, anchor="n")
 
