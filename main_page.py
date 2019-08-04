@@ -2,7 +2,8 @@
 import tkinter as tk
 from tkinter import SUNKEN
 from character import Character
-from dice_roll import Die
+import random
+import itertools
 
 
 class GamePage(tk.Frame):
@@ -45,6 +46,14 @@ class GamePage(tk.Frame):
         )
         self.name_label.pack()
 
+        st_var = tk.BooleanVar()
+        sm_var = tk.BooleanVar()
+        de_var = tk.BooleanVar()
+        wi_var = tk.BooleanVar()
+        ch_var = tk.BooleanVar()
+        sp_var = tk.BooleanVar()
+        self.v_list = [st_var, sm_var, de_var, wi_var, ch_var, sp_var]
+
         # setting up check button section
         self.check_frame = tk.Frame(self.mainframe, width=400, bd=3, bg="grey")
         self.check_frame.place(relx=0.5, rely=0.34, anchor="n")
@@ -52,11 +61,12 @@ class GamePage(tk.Frame):
         for key in self.character.attributes:
             self.feature_buttons(key)
 
-        for i in self.atts:
+        for (i, j) in zip(self.atts, self.v_list):
             self.att_buttons[i] = {}
             self.att_buttons[i]["checkbutton"] = tk.Checkbutton(
-                self.check_frame, text=i, font=("Courier", 15)
-            ).pack(side=tk.LEFT)
+                self.check_frame, text=i, font=("Courier", 15), variable=j
+            )
+            self.att_buttons[i]["checkbutton"].pack(side=tk.LEFT)
 
         # making a label to describe the character
         self.character_frame = tk.Frame(self.mainframe, width=400, bd=3)
@@ -70,13 +80,17 @@ class GamePage(tk.Frame):
         # trying to make a dice work, the label to print the result is in dice_roll.py
         self.dice_frame = tk.Frame(self.mainframe, width=400, bd=3)  # spirit frame
         self.dice_frame.place(relx=0.5, rely=0.5, anchor="n")
-        self.dice = Die(0, self.dice_frame)
+        self.label_var = tk.IntVar()
+        self.display = tk.Label(
+            self.dice_frame, relief="ridge", borderwidth=2, textvariable=self.label_var
+        ).pack()
+
         self.roll_btn = tk.Button(
             self.dice_frame,
             text="Roll 'em",
             font=("Courier", 15),
             width=15,
-            command=lambda: self.dice.roll(),
+            command=lambda: self.roll(),
         )
         self.roll_btn.config(relief=tk.SUNKEN)
         self.roll_btn.pack()
@@ -108,3 +122,49 @@ class GamePage(tk.Frame):
             textvariable=self.character.attributes[f"{feature}"],
             font=("Courier", 15),
         ).pack(side=tk.RIGHT)
+
+        self.btn_frame = tk.Frame(
+            self.mainframe, height=200, width=395, bd=4, relief=tk.GROOVE
+        )
+        self.btn_frame.place(relx=0.5, rely=0.6, anchor="n")
+
+        self.rules_btn = tk.Button(self.mainframe, text="RULES", font=("Courier", 15))
+        self.rules_btn.place(relx=0.25, rely=0.66, anchor="n", height=120, width=170)
+
+        self.con_btn = tk.Button(
+            self.mainframe,
+            text=f"RETURN TO\nDOSIER",
+            font=("Courier", 15),
+            justify=tk.CENTER,
+            command=lambda: self.controller.show_frame("FrontPage"),
+        )
+
+        self.con_btn.place(relx=0.75, rely=0.66, anchor="n", height=120, width=170)
+
+    def roll(self):
+        """Roll dice, add modifer and print a formatted result to the UI"""
+        value = random.randint(1, 6)
+        if self.v_list[0].get() == 1:
+            modifier = self.character.attributes["Strength"].get()
+            result = int(value) + int(modifier)
+            self.label_var.set(f"result: {value} + {modifier} = {result}")
+        elif self.v_list[1].get() == 1:
+            modifier = self.character.attributes["Smarts"].get()
+            result = int(value) + int(modifier)
+            self.label_var.set(f"result: {value} + {modifier} = {result}")
+        elif self.v_list[2].get() == 1:
+            modifier = self.character.attributes["Dexterity"].get()
+            result = int(value) + int(modifier)
+            self.label_var.set(f"result: {value} + {modifier} = {result}")
+        elif self.v_list[3].get() == 1:
+            modifier = self.character.attributes["Wisdom"].get()
+            result = int(value) + int(modifier)
+            self.label_var.set(f"result: {value} + {modifier} = {result}")
+        elif self.v_list[4].get() == 1:
+            modifier = self.character.attributes["Charisma"].get()
+            result = int(value) + int(modifier)
+            self.label_var.set(f"result: {value} + {modifier} = {result}")
+        elif self.v_list[5].get() == 1:
+            modifier = self.character.attributes["Spirit"].get()
+            result = int(value) + int(modifier)
+            self.label_var.set(f"result: {value} + {modifier} = {result}")

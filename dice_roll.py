@@ -25,7 +25,7 @@ class Die:
         self.label_var.set(f"result: {value} + 1 = {result}")
 
 
-"""
+""" 
 ------Whats left?------
     OK so, there are six check boxes in the main page which should set the modifier parameters for roll().
 The player should click 2 of the check boxes which sets the modifier (the total number of points between the two selected
