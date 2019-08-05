@@ -46,13 +46,17 @@ class GamePage(tk.Frame):
         )
         self.name_label.pack()
 
-        st_var = tk.BooleanVar()
-        sm_var = tk.BooleanVar()
-        de_var = tk.BooleanVar()
-        wi_var = tk.BooleanVar()
-        ch_var = tk.BooleanVar()
-        sp_var = tk.BooleanVar()
-        self.v_list = [st_var, sm_var, de_var, wi_var, ch_var, sp_var]
+        # st_var = tk.BooleanVar()
+        # sm_var = tk.BooleanVar()
+        # de_var = tk.BooleanVar()
+        # wi_var = tk.BooleanVar()
+        # ch_var = tk.BooleanVar()
+        # sp_var = tk.BooleanVar()
+
+        # self.v_list = [st_var, sm_var, de_var, wi_var, ch_var, sp_var]
+        self.v_list = [tk.BooleanVar() for i in range(6)]
+
+
 
         # setting up check button section
         self.check_frame = tk.Frame(self.mainframe, width=400, bd=3, bg="grey")
