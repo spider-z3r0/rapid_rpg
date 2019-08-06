@@ -14,6 +14,7 @@ class GamePage(tk.Frame):
         self.controller = controller
         self.features = {}
         self.atts = ["Str", "Sma", "Dex", "Wiz", "Cha", "Spi"]
+        self.atts_fullname = ["Strength", "Smarts", "Dexterity", "Wisdom", "Charisma", "Spirit"]
         self.att_buttons = {}
 
         front_page = self.controller.get_page("FrontPage")
@@ -24,18 +25,10 @@ class GamePage(tk.Frame):
 
         # trying to set this up with a character
         self.character = Character()
-        self.character.attributes["Strength"] = tk.IntVar()
-        self.character.attributes["Strength"].set(1)
-        self.character.attributes["Smarts"] = tk.IntVar()
-        self.character.attributes["Smarts"].set(1)
-        self.character.attributes["Dexterity"] = tk.IntVar()
-        self.character.attributes["Dexterity"].set(1)
-        self.character.attributes["Wisdom"] = tk.IntVar()
-        self.character.attributes["Wisdom"].set(1)
-        self.character.attributes["Charisma"] = tk.IntVar()
-        self.character.attributes["Charisma"].set(1)
-        self.character.attributes["Spirit"] = tk.IntVar()
-        self.character.attributes["Spirit"].set(1)
+        for x in self.atts_fullname:
+            self.character.attributes[x] = tk.IntVar()
+            self.character.attributes[x].set(1)
+
 
         self.name_label = tk.Label(
             self.mainframe,
@@ -46,14 +39,7 @@ class GamePage(tk.Frame):
         )
         self.name_label.pack()
 
-        # st_var = tk.BooleanVar()
-        # sm_var = tk.BooleanVar()
-        # de_var = tk.BooleanVar()
-        # wi_var = tk.BooleanVar()
-        # ch_var = tk.BooleanVar()
-        # sp_var = tk.BooleanVar()
 
-        # self.v_list = [st_var, sm_var, de_var, wi_var, ch_var, sp_var]
         self.v_list = [tk.BooleanVar() for i in range(6)]
 
 
@@ -148,27 +134,34 @@ class GamePage(tk.Frame):
     def roll(self):
         """Roll dice, add modifer and print a formatted result to the UI"""
         value = random.randint(1, 6)
-        if self.v_list[0].get() == 1:
-            modifier = self.character.attributes["Strength"].get()
-            result = int(value) + int(modifier)
-            self.label_var.set(f"result: {value} + {modifier} = {result}")
-        elif self.v_list[1].get() == 1:
-            modifier = self.character.attributes["Smarts"].get()
-            result = int(value) + int(modifier)
-            self.label_var.set(f"result: {value} + {modifier} = {result}")
-        elif self.v_list[2].get() == 1:
-            modifier = self.character.attributes["Dexterity"].get()
-            result = int(value) + int(modifier)
-            self.label_var.set(f"result: {value} + {modifier} = {result}")
-        elif self.v_list[3].get() == 1:
-            modifier = self.character.attributes["Wisdom"].get()
-            result = int(value) + int(modifier)
-            self.label_var.set(f"result: {value} + {modifier} = {result}")
-        elif self.v_list[4].get() == 1:
-            modifier = self.character.attributes["Charisma"].get()
-            result = int(value) + int(modifier)
-            self.label_var.set(f"result: {value} + {modifier} = {result}")
-        elif self.v_list[5].get() == 1:
-            modifier = self.character.attributes["Spirit"].get()
-            result = int(value) + int(modifier)
-            self.label_var.set(f"result: {value} + {modifier} = {result}")
+        value_str = f"{value}"
+        for i,x in enumerate(self.atts_fullname):
+            if self.v_list[i].get():
+                modifier = int(self.character.attributes[x].get())
+                value += modifier
+                value_str += f" + {modifier}"
+        self.label_var.set(f"result: {value_str} = {value}")
+        # if self.v_list[0].get() == 1:
+        #     modifier = self.character.attributes["Strength"].get()
+        #     result = int(value) + int(modifier)
+        #     self.label_var.set(f"result: {value} + {modifier} = {result}")
+        # elif self.v_list[1].get() == 1:
+        #     modifier = self.character.attributes["Smarts"].get()
+        #     result = int(value) + int(modifier)
+        #     self.label_var.set(f"result: {value} + {modifier} = {result}")
+        # elif self.v_list[2].get() == 1:
+        #     modifier = self.character.attributes["Dexterity"].get()
+        #     result = int(value) + int(modifier)
+        #     self.label_var.set(f"result: {value} + {modifier} = {result}")
+        # elif self.v_list[3].get() == 1:
+        #     modifier = self.character.attributes["Wisdom"].get()
+        #     result = int(value) + int(modifier)
+        #     self.label_var.set(f"result: {value} + {modifier} = {result}")
+        # elif self.v_list[4].get() == 1:
+        #     modifier = self.character.attributes["Charisma"].get()
+        #     result = int(value) + int(modifier)
+        #     self.label_var.set(f"result: {value} + {modifier} = {result}")
+        # elif self.v_list[5].get() == 1:
+        #     modifier = self.character.attributes["Spirit"].get()
+        #     result = int(value) + int(modifier)
+        #     self.label_var.set(f"result: {value} + {modifier} = {result}")
