@@ -3,7 +3,6 @@
 import tkinter as tk
 
 
-
 # Importing the other pages from the app.
 from front_page import FrontPage
 from main_page import GamePage

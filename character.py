@@ -1,5 +1,4 @@
 """This module is about modeling the character and maybe defining the functions"""
-import tkinter as tk
 
 
 """I'm gonna start with the character"""
