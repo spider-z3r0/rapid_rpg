@@ -13,14 +13,14 @@ class GamePage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.features = {}
-        self.atts = ["Str", "Sma", "Dex", "Wiz", "Cha", "Spi"]
+        self.atts = ["Str", "Agi", "Res", "Foc", "Cha", "Wit"]
         self.atts_fullname = [
             "Strength",
-            "Smarts",
-            "Dexterity",
-            "Wisdom",
-            "Charisma",
-            "Spirit",
+            "Agility",
+            "Resilience",
+            "Focus",
+            "Charm",
+            "Witts",
         ]
         self.att_buttons = {}
 
